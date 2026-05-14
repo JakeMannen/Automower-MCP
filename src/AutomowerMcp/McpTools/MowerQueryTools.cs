@@ -2,7 +2,7 @@ using AutomowerMcp.Services;
 using ModelContextProtocol.Server;
 using System.ComponentModel;
 
-namespace AutomowerMcp.Tools;
+namespace AutomowerMcp.McpTools;
 
 /// <summary>
 /// MCP tools that map to the read (GET) endpoints of the Automower Connect API.

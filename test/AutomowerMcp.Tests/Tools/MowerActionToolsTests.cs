@@ -1,5 +1,5 @@
 using AutomowerMcp.Services;
-using AutomowerMcp.Tools;
+using AutomowerMcp.McpTools;
 using NSubstitute;
 using NSubstitute.Core;
 using System.Text.Json;
