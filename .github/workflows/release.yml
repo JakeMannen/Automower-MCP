@@ -17,9 +17,9 @@ jobs:
           fetch-depth: 0
 
       - name: Conventional Commits Check
-        uses: cocogitto/cocogitto-action@v4.1.0
+        uses: cocogitto/cocogitto-action@v4
         with:
-          check: true
+          command: check
           args: --from-latest-tag
 
   # 2. Build, Test, and Release
