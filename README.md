@@ -190,7 +190,7 @@ Add to `.vscode/mcp.json` in your workspace.
 }
 ```
 
-**stdio — published binary (requires .NET 10 runtime)**
+**stdio — published binary can be found in GitHub Releases (requires .NET 10 runtime installed)**
 
 ```json
 {
