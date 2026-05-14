@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
 using ModelContextProtocol;
 
 namespace AutomowerMcp.Services;
@@ -9,7 +10,9 @@ namespace AutomowerMcp.Services;
 /// Authentication is handled automatically by <see cref="HusqvarnaAuthHandler"/>,
 /// which is registered as a delegating handler on the "automower" HttpClient.
 /// </summary>
-public class AutomowerApiService(IHttpClientFactory httpClientFactory) : IAutomowerApiService
+public class AutomowerApiService(
+    IHttpClientFactory httpClientFactory,
+    ILogger<AutomowerApiService> logger) : IAutomowerApiService
 {
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
@@ -46,8 +49,7 @@ public class AutomowerApiService(IHttpClientFactory httpClientFactory) : IAutomo
         catch (McpException) { throw; }
         catch (OperationCanceledException) { throw; }
         catch (Exception ex)
-        {
-            throw new McpException($"GET {path} failed: {ex.Message}", ex);
+        {            logger.LogError(ex, "GET {Path} failed", path);            throw new McpException($"GET {path} failed: {ex.Message}", ex);
         }
     }
 
@@ -75,6 +77,7 @@ public class AutomowerApiService(IHttpClientFactory httpClientFactory) : IAutomo
         catch (OperationCanceledException) { throw; }
         catch (Exception ex)
         {
+            logger.LogError(ex, "POST {Path} failed", path);
             throw new McpException($"POST {path} failed: {ex.Message}", ex);
         }
     }
@@ -101,6 +104,7 @@ public class AutomowerApiService(IHttpClientFactory httpClientFactory) : IAutomo
         catch (OperationCanceledException) { throw; }
         catch (Exception ex)
         {
+            logger.LogError(ex, "PATCH {Path} failed", path);
             throw new McpException($"PATCH {path} failed: {ex.Message}", ex);
         }
     }
