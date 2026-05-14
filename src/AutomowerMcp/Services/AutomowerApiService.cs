@@ -28,6 +28,13 @@ public class AutomowerApiService(IHttpClientFactory httpClientFactory) : IAutomo
         return string.IsNullOrWhiteSpace(body) ? "{\"result\":\"success\"}" : body;
     }
 
+    /// <summary>
+    /// Sends a GET request to the Automower Connect API to retrieve resources.
+    /// Used for operations like fetching mower status, retrieving work area details, or getting calendar schedules.
+    /// </summary>
+    /// <param name="path">The API endpoint path to send the GET request to.</param>
+    /// <param name="ct">Cancellation token for the async operation.</param>
+    /// <returns>The enriched response body from the API.</returns>    public async Task<string> GetAsync(string path, CancellationToken ct = default)
     public async Task<string> GetAsync(string path, CancellationToken ct = default)
     {
         try
@@ -44,6 +51,15 @@ public class AutomowerApiService(IHttpClientFactory httpClientFactory) : IAutomo
         }
     }
 
+    /// <summary>
+    /// Sends a POST request to the Automower Connect API to create or update resources.
+    /// Used for operations like creating new work areas, adding stay-out zones, or submitting calendar tasks.
+    /// The request body (if provided) is serialized to JSON with media type "application/vnd.api+json".
+    /// </summary>
+    /// <param name="path">The API endpoint path to send the POST request to.</param>
+    /// <param name="body">Optional JSON-serializable object containing the request payload.</param>
+    /// <param name="ct">Cancellation token for the async operation.</param>
+    /// <returns>The enriched response body from the API.</returns>
     public async Task<string> PostAsync(string path, object? body = null, CancellationToken ct = default)
     {
         try
@@ -63,6 +79,15 @@ public class AutomowerApiService(IHttpClientFactory httpClientFactory) : IAutomo
         }
     }
 
+    /// <summary>
+    /// Sends a PATCH request to the Automower Connect API to partially update resources.
+    /// Used for operations like updating mower settings, modifying work area properties, or adjusting calendar schedules.
+    /// The request body is serialized to JSON with media type "application/vnd.api+json".
+    /// </summary>
+    /// <param name="path">The API endpoint path to send the PATCH request to.</param>
+    /// <param name="body">JSON-serializable object containing the partial update payload.</param>
+    /// <param name="ct">Cancellation token for the async operation.</param>
+    /// <returns>The enriched response body from the API.</returns>
     public async Task<string> PatchAsync(string path, object body, CancellationToken ct = default)
     {
         try
