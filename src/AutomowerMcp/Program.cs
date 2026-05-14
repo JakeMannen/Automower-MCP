@@ -62,14 +62,12 @@ try
 }
 catch (McpProtocolException ex)
 {
-    await Console.Error.WriteLineAsync(
-        $"[automower-mcp] MCP protocol error ({ex.ErrorCode}): {ex.Message}");
+    logger.LogError(ex, "[automower-mcp] MCP protocol error ({0}): {1}", ex.ErrorCode, ex.Message);
     return 2;
 }
 catch (Exception ex)
 {
-    await Console.Error.WriteLineAsync(
-        $"[automower-mcp] Fatal error: {ex}");
+    logger.LogError(ex, "[automower-mcp] Fatal error: {0}", ex.Message);
     return 1;
 }
 
