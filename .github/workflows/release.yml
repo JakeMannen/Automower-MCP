@@ -17,10 +17,10 @@ jobs:
           fetch-depth: 0
 
       - name: Conventional Commits Check
-        uses: cocogitto/cocogitto-action@v3
+        uses: cocogitto/cocogitto-action@v4.1.0
         with:
           check: true
-          from: HEAD
+          args: --from-latest-tag
 
   # 2. Build, Test, and Release
   build-test-release:
