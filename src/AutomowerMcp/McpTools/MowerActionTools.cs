@@ -3,7 +3,7 @@ using ModelContextProtocol.Server;
 using System.ComponentModel;
 using System.Text.Json;
 
-namespace AutomowerMcp.Tools;
+namespace AutomowerMcp.McpTools;
 
 /// <summary>
 /// MCP tools that map to the write (POST/PATCH) endpoints of the Automower Connect API.

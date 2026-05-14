@@ -2,7 +2,7 @@ using ModelContextProtocol.Server;
 using System.ComponentModel;
 using System.Text.Json;
 
-namespace AutomowerMcp.Tools;
+namespace AutomowerMcp.McpTools;
 
 [McpServerToolType]
 public static class MowerStatusTools
