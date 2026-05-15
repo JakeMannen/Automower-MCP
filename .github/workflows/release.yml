@@ -7,9 +7,10 @@ on:
     paths:
       - 'src/**'
       - 'test/**'
+      - '.github/workflows/release.yml'
 jobs:
   # 1. Validate Conventional Commits
-  lint-commits:
+  validate-commits:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +25,7 @@ jobs:
 
   # 2. Build, Test, and Release
   build-test-release:
-    needs: lint-commits
+    needs: validate-commits
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
