@@ -7,7 +7,6 @@ on:
     paths:
       - 'src/**'
       - 'test/**'
-      - '.github/workflows/release.yml'
 jobs:
   # 1. Validate Conventional Commits
   validate-commits:
@@ -66,12 +65,12 @@ jobs:
         run: |
           dotnet publish src/AutomowerMcp/AutomowerMcp.csproj \
             -c Release \
-            -o ./publish \
+            -o ./AutomowerMcp/automower-mcp \
             /p:Version=${{ steps.versioning.outputs.version }}
 
       # 6. Package and Release
       - name: Zip Artifact
-        run: zip -r automower-mcp-v${{ steps.versioning.outputs.version }}.zip ./publish
+        run: zip -r automower-mcp-v${{ steps.versioning.outputs.version }}.zip ./AutomowerMcp
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -82,9 +81,3 @@ jobs:
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: automower-mcp-v${{ steps.versioning.outputs.version }}
-          path: ./publish
