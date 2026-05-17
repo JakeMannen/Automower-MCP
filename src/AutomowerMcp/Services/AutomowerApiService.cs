@@ -49,7 +49,7 @@ public class AutomowerApiService(
         catch (McpException) { throw; }
         catch (OperationCanceledException) { throw; }
         catch (Exception ex)
-        {            logger.LogError(ex, "GET {Path} failed", path);            throw new McpException($"GET {path} failed: {ex.Message}", ex);
+        {            logger.LogError(ex, "GET {Path} failed", path);            throw new McpException($"Failed to get resource from server.");
         }
     }
 
@@ -78,7 +78,7 @@ public class AutomowerApiService(
         catch (Exception ex)
         {
             logger.LogError(ex, "POST {Path} failed", path);
-            throw new McpException($"POST {path} failed: {ex.Message}", ex);
+            throw new McpException($"Failed to post resource to server.");
         }
     }
 
@@ -105,7 +105,7 @@ public class AutomowerApiService(
         catch (Exception ex)
         {
             logger.LogError(ex, "PATCH {Path} failed", path);
-            throw new McpException($"PATCH {path} failed: {ex.Message}", ex);
+            throw new McpException($"Failed to patch resource on server.");
         }
     }
 }

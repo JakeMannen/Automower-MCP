@@ -75,17 +75,23 @@ return 0;
 
 static void RegisterCommonServices(IServiceCollection services)
 {
-    // The auth handler acquires/caches OAuth2 tokens and injects all required headers.
-    // Must be singleton so the token cache survives across requests.
-    services.AddSingleton<HusqvarnaAuthHandler>();
+    // Register the token service as a singleton to cache the access token across requests
+    services.AddSingleton<HusqvarnaTokenService>();
 
     // Named HttpClient for the Husqvarna Automower API
+    // Factory function creates a new AuthHandler instance per request (required by DelegatingHandler)
     services.AddHttpClient("automower", client =>
     {
         client.BaseAddress = new Uri(ApiUrls.AutomowerBaseAddress);
         client.Timeout = TimeSpan.FromSeconds(30);
     })
-    .AddHttpMessageHandler<HusqvarnaAuthHandler>();
+    .AddHttpMessageHandler(sp =>
+    {
+        var authClient = sp.GetRequiredService<HttpClient>();
+        var tokenService = sp.GetRequiredService<HusqvarnaTokenService>();
+        var logger = sp.GetRequiredService<ILogger<HusqvarnaAuthHandler>>();
+        return new HusqvarnaAuthHandler(authClient, tokenService, logger);
+    });
 
     services.AddSingleton<IAutomowerApiService, AutomowerApiService>();
 }
