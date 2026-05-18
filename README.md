@@ -100,8 +100,8 @@ Add to `claude_desktop_config.json`. Choose one approach:
       "command": "docker",
       "args": [
         "run", "-i", "--rm",
-        "-e", "HUSQVARNA_API_KEY=your_application_key",
-        "-e", "HUSQVARNA_APPLICATION_SECRET=your_application_secret",
+        "-e", "HUSQVARNA_API_KEY=YOUR_HUSQVARNA_API_KEY",
+        "-e", "HUSQVARNA_APPLICATION_SECRET=YOUR_HUSQVARNA_APPLICATION_SECRET",
         "automower-mcp"
       ]
     }
@@ -118,8 +118,8 @@ Add to `claude_desktop_config.json`. Choose one approach:
       "command": "dotnet",
       "args": ["run", "--project", "/path/to/automower-mcp/src/AutomowerMcp", "--no-build"],
       "env": {
-        "HUSQVARNA_API_KEY": "your_application_key",
-        "HUSQVARNA_APPLICATION_SECRET": "your_application_secret"
+        "HUSQVARNA_API_KEY": "YOUR_HUSQVARNA_API_KEY",
+        "HUSQVARNA_APPLICATION_SECRET": "YOUR_HUSQVARNA_APPLICATION_SECRET"
       }
     }
   }
@@ -141,8 +141,8 @@ Then add to config:
       "command": "dotnet",
       "args": ["/Users/you/automower-mcp-bin/AutomowerMcp.dll"],
       "env": {
-        "HUSQVARNA_API_KEY": "your_application_key",
-        "HUSQVARNA_APPLICATION_SECRET": "your_application_secret"
+        "HUSQVARNA_API_KEY": "YOUR_HUSQVARNA_API_KEY",
+        "HUSQVARNA_APPLICATION_SECRET": "YOUR_HUSQVARNA_APPLICATION_SECRET"
       }
     }
   }
@@ -163,8 +163,8 @@ Add to `.vscode/mcp.json` in your workspace.
       "command": "docker",
       "args": [
         "run", "-i", "--rm",
-        "-e", "HUSQVARNA_API_KEY=${env:HUSQVARNA_API_KEY}",
-        "-e", "HUSQVARNA_APPLICATION_SECRET=${env:HUSQVARNA_APPLICATION_SECRET}",
+        "-e", "HUSQVARNA_API_KEY=YOUR_HUSQVARNA_API_KEY",
+        "-e", "HUSQVARNA_APPLICATION_SECRET=YOUR_HUSQVARNA_APPLICATION_SECRET",
         "automower-mcp"
       ]
     }
@@ -182,8 +182,8 @@ Add to `.vscode/mcp.json` in your workspace.
       "command": "dotnet",
       "args": ["run", "--project", "/path/to/automower-mcp/src/AutomowerMcp", "--no-build"],
       "env": {
-        "HUSQVARNA_API_KEY": "${env:HUSQVARNA_API_KEY}",
-        "HUSQVARNA_APPLICATION_SECRET": "${env:HUSQVARNA_APPLICATION_SECRET}"
+        "HUSQVARNA_API_KEY": "YOUR_HUSQVARNA_API_KEY",
+        "HUSQVARNA_APPLICATION_SECRET": "YOUR_HUSQVARNA_APPLICATION_SECRET"
       }
     }
   }
@@ -200,8 +200,8 @@ Add to `.vscode/mcp.json` in your workspace.
       "command": "dotnet",
       "args": ["/path/to/automower-mcp-bin/AutomowerMcp.dll"],
       "env": {
-        "HUSQVARNA_API_KEY": "${env:HUSQVARNA_API_KEY}",
-        "HUSQVARNA_APPLICATION_SECRET": "${env:HUSQVARNA_APPLICATION_SECRET}"
+        "HUSQVARNA_API_KEY": "YOUR_HUSQVARNA_API_KEY",
+        "HUSQVARNA_APPLICATION_SECRET": "YOUR_HUSQVARNA_APPLICATION_SECRET"
       }
     }
   }
@@ -264,3 +264,6 @@ All GET responses are automatically enriched with human-readable description fie
 | `GetStatusDescriptions` | Returns all possible values for `mode`, `activity`, and `state` with descriptions. These are already inlined into every GET response — use this only if you encounter an unfamiliar value. |
 
 ---
+## Agent files
+
+The ```agent-files``` folder contains files usable together with your agent of choice. Skills etc.
